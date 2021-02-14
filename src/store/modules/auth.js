@@ -18,13 +18,13 @@ const actions = {
 }
 
 const mutations = {
-  setLoggedIn (state, { loggedIn }) {
+  setLoggedIn (state, loggedIn) {
     state.loggedIn = loggedIn
   },
-  setAuthState (state, { authState }) {
+  setAuthState (state, authState) {
     state.authState = authState
   },
-  setUser (state, { user }) {
+  setUser (state, user ) {
     state.user = user
   },
 }
