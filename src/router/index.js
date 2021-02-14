@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-import Login from '../pages/Login.vue'
-import List from '../pages/List.vue'
+import Login from '../pages/Login.vue';
+import List from '../pages/List.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -17,12 +17,12 @@ const routes = [
     name: 'List',
     component: List
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

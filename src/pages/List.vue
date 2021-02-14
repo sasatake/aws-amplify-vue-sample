@@ -22,12 +22,10 @@ export default {
   name: 'List',
   data() {
     return {
-      items: [
-        {id: 1,task: "牛乳を買う", expired_date: "2021-02-10"}
-      ],
+      items: [{ id: 1, task: '牛乳を買う', expired_date: '2021-02-10' }]
     };
-  },
-}
+  }
+};
 </script>
 
 <style scoped></style>
