@@ -1,34 +1,27 @@
 <template>
-  <div>
-    <div v-if="authState !== 'signedin'">You are signed out.</div>
-    <amplify-authenticator>
-      <div v-if="authState === 'signedin' && user">
-        <div>Hello, {{user.username}}</div>
-      </div>
-      <amplify-sign-out></amplify-sign-out>
-    </amplify-authenticator>
-  </div>
+  <amplify-authenticator>
+      <amplify-sign-in></amplify-sign-in>
+  </amplify-authenticator>
 </template>
 
 <script>
-import { onAuthUIStateChange } from '@aws-amplify/ui-components'
+import { onAuthUIStateChange,AuthState } from '@aws-amplify/ui-components'
+import { mapState,mapActions } from "vuex";
 
 export default {
   name: 'Login',
   created() {
     this.unsubscribeAuth = onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      this.user = authData;
+      if(!this.loggedIn && authState === AuthState.SignedIn){
+        this.login({authState,user: authData})
+        this.$router.push({name: "List"})
+      }
     })
   },
-  data() {
-    return {
-      user: undefined,
-      authState: undefined,
-      unsubscribeAuth: undefined
-    }
+  computed: {
+    ...mapState("auth", ["loggedIn","user"])
   },
-  beforeDestroy() {
-    this.unsubscribeAuth();
+  methods: {
+    ...mapActions('auth', ['login']),
   }
 }</script>
