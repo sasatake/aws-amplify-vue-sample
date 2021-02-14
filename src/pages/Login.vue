@@ -1,6 +1,6 @@
 <template>
   <amplify-authenticator>
-    <amplify-sign-in></amplify-sign-in>
+    <amplify-sign-in slot="sign-in" hide-sign-up="true"></amplify-sign-in>
   </amplify-authenticator>
 </template>
 
