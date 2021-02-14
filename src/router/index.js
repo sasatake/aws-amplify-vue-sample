@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../store';
 
 import Login from '../pages/Login.vue';
 import List from '../pages/List.vue';
@@ -10,7 +11,8 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: { isPublic: true }
   },
   {
     path: '/',
@@ -25,4 +27,14 @@ const router = new VueRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  if (
+    to.matched.some(record => !record.meta.isPublic) &&
+    !store.state.auth.loggedIn
+  ) {
+    next({ name: 'Login' });
+  } else {
+    next();
+  }
+});
 export default router;
